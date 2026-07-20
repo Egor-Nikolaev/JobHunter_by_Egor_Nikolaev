@@ -1,0 +1,137 @@
+\documentclass[10pt, letterpaper]{article}
+
+% ---- Generic one-page CV template. Replace the FAKE persona "Alex Doe" and all
+% ---- placeholder content with your own. Lines marked "% ATS-*" are rewritten by
+% ---- resume/tailor.js; keep them where you want the injected content to appear.
+
+\usepackage[
+    ignoreheadfoot,
+    top=1.8cm, bottom=1.8cm, left=1.8cm, right=1.8cm,
+    footskip=0.8cm,
+]{geometry}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={Alex Doe CV},
+    pdfauthor={Alex Doe},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage{calc}
+\usepackage{paracol}
+\usepackage{iftex}
+
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\renewcommand{\familydefault}{\ttdefault}
+\raggedright
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{0.5pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.25cm}{0.15cm}
+
+\newenvironment{highlights}{
+    \begin{itemize}[topsep=0.08cm, parsep=0.08cm, partopsep=0pt, itemsep=0pt, leftmargin=10pt]
+}{
+    \end{itemize}
+}
+\newenvironment{onecolentry}{\begin{adjustwidth}{0.00001cm}{0.00001cm}}{\end{adjustwidth}}
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+\usepackage{changepage}
+\newenvironment{header}{\setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.3}}{\par\kern\topsep}
+
+\begin{document}
+    \newcommand{\AND}{\unskip\cleaders\copy\ANDbox\hskip\wd\ANDbox\ignorespaces}
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25pt}{25pt}\selectfont Alex Doe
+
+        \vspace{5pt}
+        \normalsize
+        \mbox{\href{https://example.com/alex-doe}{example.com/alex-doe}}%
+        \kern 5.0pt \AND \kern 5.0pt%
+        \mbox{\href{mailto:alex.doe@example.com}{alex.doe@example.com}}%
+        \kern 5.0pt \AND \kern 5.0pt%
+        \mbox{\href{https://www.linkedin.com/in/your-handle}{linkedin.com/in/your-handle}}%
+    \end{header}
+
+    \vspace{5pt - 0.3cm}
+
+    % ATS-HEADLINE (tailor.js replaces the next line if a headline is passed)
+    \section{About Me}
+
+    \begin{onecolentry}
+        TODO: 2-3 sentence summary in your own words. Who you are, what you build,
+        the outcome you are known for. Keep it to what you can defend in an interview.
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \section{Experience}
+
+    \begin{twocolentry}{Mon 20XX -- Present}
+        \textbf{Your Most Recent Title}, Company Name -- Remote\end{twocolentry}
+    \vspace{0.08cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item TODO: a result you owned, with a metric you can prove.
+            \item TODO: a second bullet: scope, decision, outcome.
+            \item TODO: a third bullet, ideally tying to your target role.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \begin{twocolentry}{Mon 20XX -- Mon 20XX}
+        \textbf{Previous Title}, Company Name -- Remote\end{twocolentry}
+    \vspace{0.08cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item TODO: outcome bullet.
+            \item TODO: outcome bullet.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \section{Education}
+
+    \begin{twocolentry}{Mon 20XX -- Mon 20XX}
+        \textbf{Your Degree}, Field of Study
+    \end{twocolentry}
+    \vspace{0.05cm}
+    \begin{onecolentry}
+        Institution Name
+    \end{onecolentry}
+
+    \vspace{0.15cm}
+    \section{Skills}
+
+    \begin{onecolentry}
+        % ATS-SKILLS-LINE (tailor.js replaces the next line with matched skills)
+        \textbf{Product:} Strategy \textperiodcentered{} Discovery \textperiodcentered{} Roadmap \textbf{|} \textbf{Tools:} Jira \textperiodcentered{} Notion
+    \end{onecolentry}
+
+\end{document}

@@ -1,0 +1,40 @@
+{
+  "_comment": "TEMPLATE ONLY. Copy to xray.local.json and replace every <YOUR_*> placeholder with your own server details. Never commit real values.",
+  "log": { "loglevel": "warning" },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": { "udp": true }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "<YOUR_SERVER>",
+            "port": 443,
+            "users": [
+              { "id": "<YOUR_UUID>", "encryption": "none", "flow": "xtls-rprx-vision" }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "<YOUR_SNI>",
+          "publicKey": "<YOUR_PUBLIC_KEY>",
+          "shortId": "<YOUR_SHORT_ID>"
+        }
+      }
+    },
+    { "tag": "direct", "protocol": "freedom" }
+  ]
+}

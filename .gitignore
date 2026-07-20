@@ -1,0 +1,30 @@
+# --- Secrets & personal data: never commit ---
+config/config.json
+*.env
+.env
+**/userdata/
+**/*cookies*
+*.local.*
+engine/proxy/*.local.json
+
+# Your real master resume (keep only the .example.md in git)
+profile/MASTER_RESUME.md
+
+# Outreach ledger (contains handles/names)
+output/ledger.json
+
+# --- Build artifacts ---
+output/**/*.pdf
+output/**/*.tex
+output/**/*.log
+!output/.gitkeep
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+
+# --- OS / editor ---
+.DS_Store
+*.swp
+.idea/
+.vscode/

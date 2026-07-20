@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobHunter — Pipeline Dashboard</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --panel: #ffffff; --ink: #1a1d21; --muted: #626973;
+    --line: #e6e8ec; --accent: #3b6ef5; --accent-soft: #e8eefe;
+    --applied: #3b6ef5; --reply: #17a673; --interview: #b8860b; --rejected: #c0492e; --silent: #8a929c;
+    --shadow: 0 1px 2px rgba(20,24,31,.06), 0 4px 16px rgba(20,24,31,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216; --panel: #171b21; --ink: #eceef1; --muted: #98a1ad;
+      --line: #262c34; --accent: #5b86f7; --accent-soft: #1b2740;
+      --applied: #5b86f7; --reply: #2bbd86; --interview: #d9a93a; --rejected: #e3694c; --silent: #6d7681;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 20px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#f7f8fa;--panel:#fff;--ink:#1a1d21;--muted:#626973;--line:#e6e8ec;--accent:#3b6ef5;--accent-soft:#e8eefe;
+    --applied:#3b6ef5;--reply:#17a673;--interview:#b8860b;--rejected:#c0492e;--silent:#8a929c;
+    --shadow:0 1px 2px rgba(20,24,31,.06),0 4px 16px rgba(20,24,31,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg:#0f1216;--panel:#171b21;--ink:#eceef1;--muted:#98a1ad;--line:#262c34;--accent:#5b86f7;--accent-soft:#1b2740;
+    --applied:#5b86f7;--reply:#2bbd86;--interview:#d9a93a;--rejected:#e3694c;--silent:#6d7681;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 20px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.top { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  h1 { font-size: 22px; margin: 0; letter-spacing: -.01em; }
+  h1 .tag { color: var(--accent); }
+  .sub { color: var(--muted); font-size: 13px; margin: 2px 0 22px; }
+  .demo-note { font-size: 12px; color: var(--muted); border: 1px dashed var(--line); border-radius: 8px; padding: 6px 10px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 22px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .card .n { font-size: 26px; font-weight: 650; letter-spacing: -.02em; }
+  .card .l { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card .l .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+  .bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 22px; }
+  .bar span { display: block; }
+  section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .slug { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--muted); }
+  .co { font-weight: 600; }
+  .role { color: var(--muted); font-size: 13px; }
+  .pill { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .st-applied { background: var(--accent-soft); color: var(--applied); }
+  .st-reply { background: color-mix(in srgb, var(--reply) 16%, transparent); color: var(--reply); }
+  .st-interview { background: color-mix(in srgb, var(--interview) 18%, transparent); color: var(--interview); }
+  .st-rejected { background: color-mix(in srgb, var(--rejected) 15%, transparent); color: var(--rejected); }
+  .st-silent { background: color-mix(in srgb, var(--silent) 18%, transparent); color: var(--silent); }
+  .ch { font-size: 12px; color: var(--muted); }
+  .cover { font-size: 12.5px; color: var(--muted); }
+  .foot { margin-top: 26px; font-size: 12px; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Job<span class="tag">Hunter</span> — pipeline</h1>
+    <span class="demo-note">Demo data — fake personas &amp; vacancies. Wire to your <code>output/ledger.json</code>.</span>
+  </header>
+  <p class="sub">One slug per vacancy. The filename is the application's identity — a reply always traces back to the exact resume sent.</p>
+
+  <div class="cards" id="cards"></div>
+  <div class="bar" id="bar" title="status mix"></div>
+
+  <section>
+    <h2>Applications</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Slug</th><th>Company / role</th><th>Channel</th><th>Applied</th><th>Status</th><th>Last reply</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="foot">JobHunter · MIT · self-contained demo, no external assets</p>
+</div>
+
+<script>
+  // ---- MOCK DATA (fake) — replace with a read of output/ledger.json ----
+  const apps = [
+    { slug: "acme-pm",        company: "Acme Cloud",       role: "Product Manager (AI)",        channel: "hh.ru",    applied: "2026-07-14", status: "interview", reply: "Screening call booked for Thu" },
+    { slug: "nimbus-spm",     company: "Nimbus Labs",      role: "Senior Product Manager",       channel: "Telegram", applied: "2026-07-15", status: "reply",     reply: "Can you share a portfolio case?" },
+    { slug: "orbit-delivery", company: "Orbit Systems",    role: "Delivery Manager",             channel: "Hirify",   applied: "2026-07-16", status: "applied",   reply: "—" },
+    { slug: "vertex-pm-b2b",  company: "Vertex SaaS",      role: "Product Manager, B2B",         channel: "hh.ru",    applied: "2026-07-12", status: "rejected",  reply: "Went with an internal candidate" },
+    { slug: "pulse-ai-pm",    company: "Pulse Health",     role: "AI Product Manager",           channel: "Telegram", applied: "2026-07-17", status: "silent",    reply: "—" },
+    { slug: "harbor-tpm",     company: "Harbor Fintech",   role: "Technical Product Manager",    channel: "hh.ru",    applied: "2026-07-11", status: "reply",     reply: "HR: sending a test task" },
+    { slug: "meridian-pm",    company: "Meridian Retail",  role: "Product Manager, E-commerce",  channel: "Hirify",   applied: "2026-07-18", status: "applied",   reply: "—" },
+    { slug: "atlas-lead",     company: "Atlas Games",      role: "Product Lead, LiveOps",        channel: "Telegram", applied: "2026-07-10", status: "silent",    reply: "—" }
+  ];
+
+  const META = {
+    applied:   { label: "Applied",    cls: "st-applied",   dot: "var(--applied)" },
+    reply:     { label: "Replied",    cls: "st-reply",     dot: "var(--reply)" },
+    interview: { label: "Interview",  cls: "st-interview", dot: "var(--interview)" },
+    rejected:  { label: "Rejected",   cls: "st-rejected",  dot: "var(--rejected)" },
+    silent:    { label: "No reply",   cls: "st-silent",    dot: "var(--silent)" }
+  };
+  const ORDER = ["applied", "reply", "interview", "rejected", "silent"];
+
+  const counts = ORDER.reduce((a, k) => (a[k] = apps.filter(x => x.status === k).length, a), {});
+  const total = apps.length;
+
+  document.getElementById("cards").innerHTML =
+    `<div class="card"><div class="n">${total}</div><div class="l">Total applications</div></div>` +
+    ORDER.map(k => `<div class="card"><div class="n">${counts[k]}</div>
+      <div class="l"><span class="dot" style="background:${META[k].dot}"></span>${META[k].label}</div></div>`).join("");
+
+  document.getElementById("bar").innerHTML = ORDER.map(k =>
+    counts[k] ? `<span style="flex:${counts[k]};background:${META[k].dot}" title="${META[k].label}: ${counts[k]}"></span>` : ""
+  ).join("");
+
+  document.getElementById("rows").innerHTML = apps.map(a => {
+    const m = META[a.status];
+    return `<tr>
+      <td class="slug">${a.slug}</td>
+      <td><span class="co">${a.company}</span><br><span class="role">${a.role}</span></td>
+      <td class="ch">${a.channel}</td>
+      <td class="ch">${a.applied}</td>
+      <td><span class="pill ${m.cls}">${m.label}</span></td>
+      <td class="cover">${a.reply}</td>
+    </tr>`;
+  }).join("");
+</script>
+</body>
+</html>

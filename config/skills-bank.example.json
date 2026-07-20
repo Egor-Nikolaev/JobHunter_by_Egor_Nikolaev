@@ -1,0 +1,64 @@
+{
+  "note": "Your HONEST skills superset. ats_match injects into a resume ONLY skills that are BOTH listed here AND present in the job description. kw = canonical name shown on the resume. syn = synonyms/variants (add your own languages) used to detect the skill in a JD. Edit freely so it reflects YOUR real experience.",
+  "categories": {
+    "Product": [
+      { "kw": "Product Strategy", "syn": ["product strategy", "product vision", "продуктовая стратегия", "видение продукта"] },
+      { "kw": "Discovery", "syn": ["discovery", "customer discovery", "customer development", "user research", "user interviews", "кастдев", "custdev", "исследование пользователей"] },
+      { "kw": "JTBD", "syn": ["jtbd", "jobs to be done", "jobs-to-be-done"] },
+      { "kw": "Roadmap", "syn": ["roadmap", "product roadmap", "дорожная карта"] },
+      { "kw": "Prioritization", "syn": ["prioritization", "rice", "impact effort", "impact-effort", "backlog", "backlog management", "приоритизация", "бэклог"] },
+      { "kw": "Hypotheses / Experiments", "syn": ["hypotheses", "experiments", "a/b", "a/b test", "ab test", "split test", "гипотезы", "эксперименты"] },
+      { "kw": "Product Metrics", "syn": ["product metrics", "retention", "churn", "conversion", "activation", "adoption", "engagement", "dau", "mau", "pmf", "product market fit", "north star", "ltv", "arpu", "метрики", "конверсия", "удержание", "воронка"] },
+      { "kw": "Unit Economics", "syn": ["unit economics", "unit-economics", "юнит-экономика"] },
+      { "kw": "GTM", "syn": ["gtm", "go-to-market", "go to market", "launch", "вывод на рынок", "запуск продукта"] },
+      { "kw": "Positioning & Pricing", "syn": ["positioning", "pricing", "позиционирование", "ценообразование"] },
+      { "kw": "Ownership / Outcomes", "syn": ["ownership", "product owner", "outcome", "end-to-end", "end to end", "владелец продукта"] },
+      { "kw": "Analytics / SQL", "syn": ["analytics", "sql", "data-driven", "data driven", "funnel", "dashboards", "amplitude", "firebase", "аналитика", "данные"] }
+    ],
+    "Project / Delivery": [
+      { "kw": "Agile / Scrum / Kanban", "syn": ["agile", "scrum", "kanban", "sprint", "скрам", "канбан", "спринт"] },
+      { "kw": "Risk Management", "syn": ["risk management", "risk", "управление рисками", "риски"] },
+      { "kw": "Release Management", "syn": ["release management", "release", "versioning", "rollback", "deployment", "релиз"] },
+      { "kw": "Delivery / Timelines", "syn": ["delivery", "timelines", "deadlines", "milestones", "scope", "сроки", "поставка"] },
+      { "kw": "Stakeholder Management", "syn": ["stakeholder", "client communication", "negotiation", "стейкхолдер", "заказчик", "переговоры"] },
+      { "kw": "Cross-functional Coordination", "syn": ["cross-functional", "team coordination", "distributed teams", "кросс-функциональн", "координация команд"] },
+      { "kw": "Quality Gate / Acceptance", "syn": ["quality gate", "quality assurance", "qa", "acceptance", "приёмка", "контроль качества"] },
+      { "kw": "Budgeting", "syn": ["budget", "budgeting", "cost", "p&l", "бюджет"] },
+      { "kw": "Status Reporting", "syn": ["reporting", "status report", "documentation", "отчётность", "документооборот"] },
+      { "kw": "SLA / KPI", "syn": ["sla", "kpi", "service level", "кипиай"] },
+      { "kw": "BPMN / UML", "syn": ["bpmn", "uml", "business process", "бизнес-процесс", "процессы"] }
+    ],
+    "AI / Automation": [
+      { "kw": "LLM Integration", "syn": ["llm", "large language model", "gpt", "chatgpt", "gemini", "generative ai", "gen ai", "genai", "ai product", "machine learning", "artificial intelligence", "ллм", "машинное обучение", "искусственн"] },
+      { "kw": "AI Orchestration", "syn": ["n8n", "claude", "anthropic", "automation", "orchestration", "agentic", "ai agents", "workflow", "workflows", "zapier", "make", "автоматизация", "оркестрация"] },
+      { "kw": "Prompt Engineering", "syn": ["prompt", "prompt engineering", "prompt versioning", "rag", "fine-tuning", "fine tuning", "vector", "промпт"] },
+      { "kw": "Python", "syn": ["python", "питон"] },
+      { "kw": "REST API", "syn": ["rest api", "api", "rest", "integration", "webhooks", "интеграц", "вебхуки"] },
+      { "kw": "No-code / Prototyping", "syn": ["no-code", "no code", "prototyping", "mvp", "cursor", "lovable", "прототип", "нокод"] }
+    ],
+    "Domains": [
+      { "kw": "FinTech", "syn": ["fintech", "payments", "payment", "acquiring", "bank", "banking", "billing", "crypto", "web3", "blockchain", "финтех", "платежи", "эквайринг", "биллинг"] },
+      { "kw": "HealthTech", "syn": ["healthtech", "medtech", "medical", "health", "медтех", "медицин", "диагностик"] },
+      { "kw": "LegalTech", "syn": ["legaltech", "legal", "patent", "compliance", "regulatory", "легалтех", "юридическ", "патент", "комплаенс"] },
+      { "kw": "GameDev", "syn": ["gamedev", "game", "gaming", "live-ops", "liveops", "f2p", "геймдев", "игров"] },
+      { "kw": "B2B SaaS", "syn": ["b2b", "saas", "enterprise", "erp", "crm", "platform", "саас", "энтерпрайз", "платформа"] },
+      { "kw": "E-commerce", "syn": ["e-commerce", "ecommerce", "marketplace", "retail", "edtech", "hrtech", "proptech", "traveltech", "маркетплейс", "ритейл"] }
+    ],
+    "Compliance / Certs": [
+      { "kw": "PCI DSS", "syn": ["pci dss", "pci-dss", "pcidss"] },
+      { "kw": "Regulatory Submissions", "syn": ["regulatory", "certification", "government", "регуляторн", "сертификация", "госсектор"] }
+    ],
+    "Tools": [
+      { "kw": "Jira", "syn": ["jira", "джира"] },
+      { "kw": "Confluence", "syn": ["confluence", "конфлюенс"] },
+      { "kw": "Notion", "syn": ["notion", "ноушн", "ноушен"] },
+      { "kw": "Figma", "syn": ["figma", "фигма"] },
+      { "kw": "Miro", "syn": ["miro", "миро"] }
+    ],
+    "Soft / Level": [
+      { "kw": "English B2+", "syn": ["english", "b2", "c1", "upper-intermediate", "fluent", "английск"] },
+      { "kw": "Remote / Contract", "syn": ["remote", "self-employed", "contractor", "b2b contract", "удал[её]нн", "удаленка", "самозанят"] },
+      { "kw": "Leadership", "syn": ["lead", "head", "team lead", "people management", "mentoring", "руководител", "менторство"] }
+    ]
+  }
+}

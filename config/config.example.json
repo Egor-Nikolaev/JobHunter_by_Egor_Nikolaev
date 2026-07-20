@@ -1,0 +1,25 @@
+{
+  "fullName": "Alex Doe",
+  "contactEmail": "alex.doe@example.com",
+  "portfolioUrl": "https://example.com/alex-doe",
+  "linkedinUrl": "https://www.linkedin.com/in/your-handle",
+  "targetRoles": ["Product Manager", "Project Manager"],
+  "locations": ["Remote", "Berlin"],
+  "workFormat": "remote",
+  "channels": {
+    "telegram": { "enabled": false, "handle": "<YOUR_TELEGRAM_HANDLE>" },
+    "hh": { "enabled": false },
+    "hirify": { "enabled": false }
+  },
+  "proxy": {
+    "enabled": false,
+    "type": "xray",
+    "subscriptionUrl": "<YOUR_OWN_PROXY_KEY>"
+  },
+  "anthropicKey": "<YOUR_ANTHROPIC_API_KEY or leave blank to use Claude Code>",
+  "rateLimits": {
+    "perDayTotal": 25,
+    "minSecondsBetweenSends": 90
+  },
+  "autoSend": false
+}

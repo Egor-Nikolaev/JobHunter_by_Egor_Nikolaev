@@ -1,0 +1,21 @@
+Product Manager (AI / Automation) — B2B SaaS platform
+
+About the role:
+We are looking for a Product Manager to own product strategy and roadmap for our
+B2B SaaS platform. You will run discovery and user research, define hypotheses,
+and validate them with A/B experiments. You will prioritize the backlog (RICE),
+track product metrics (retention, conversion, activation), and drive go-to-market.
+
+Responsibilities:
+- Own product vision and roadmap; align stakeholders across engineering and design
+- Lead discovery: customer interviews, JTBD, opportunity assessment
+- Define and monitor KPIs and unit economics
+- Integrate LLM automation into product workflows (Claude, n8n, REST API)
+- Coordinate cross-functional delivery in Agile / Scrum; manage release and risk
+
+Requirements:
+- 4+ years in product management, ideally FinTech or enterprise SaaS
+- Strong analytics; comfortable with SQL and dashboards
+- Experience with prompt engineering and AI orchestration is a plus
+- Tools: Jira, Confluence, Notion, Figma
+- English B2+; remote-friendly

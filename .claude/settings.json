@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Bash(node resume/ats_match.js:*)",
+      "Bash(node resume/tailor.js:*)",
+      "Bash(node engine/channels/hh.js:*)",
+      "Bash(node engine/channels/hirify.js:*)",
+      "Bash(node engine/channels/telegram.js:*)",
+      "Bash(node engine/followup.js:*)",
+      "Bash(node engine/forms.js:*)",
+      "Bash(npm install)",
+      "Bash(npm run:*)",
+      "Bash(tectonic:*)",
+      "Bash(cp config/*.example.json:*)",
+      "Bash(cp profile/*.example.md:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Read(./config/config.json)",
+      "Read(./**/*.env)",
+      "Read(./engine/proxy/*.local.json)",
+      "Read(./**/userdata/**)"
+    ]
+  }
+}

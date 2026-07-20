@@ -1,0 +1,22 @@
+{
+  "name": "jobhunter",
+  "version": "0.1.0",
+  "description": "Claude Code-native job application autopilot: interview-driven onboarding, per-vacancy resume tailoring, and rate-limited channel helpers.",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "match": "node resume/ats_match.js",
+    "tailor": "node resume/tailor.js",
+    "apply:hh": "node engine/channels/hh.js",
+    "apply:hirify": "node engine/channels/hirify.js",
+    "send:telegram": "node engine/channels/telegram.js",
+    "followup": "node engine/followup.js",
+    "forms": "node engine/forms.js"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
