@@ -1,4 +1,4 @@
-<title>JobHunter — Live Demo</title>
+<title>JobHunter — живое демо</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root{
@@ -16,17 +16,15 @@
     color:var(--ink);font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     -webkit-font-smoothing:antialiased}
   .wrap{max-width:980px;margin:0 auto;padding:26px 20px 40px;min-height:100vh}
-  /* header */
   header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
   .brand{display:flex;align-items:center;gap:11px}
   .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc2));
     display:grid;place-items:center;font-weight:800;color:#04121a;font-size:19px;box-shadow:0 6px 24px -6px var(--acc)}
   .brand h1{font-size:17px;margin:0;letter-spacing:-.01em}
-  .brand .sub{font-size:11.5px;color:var(--mut);letter-spacing:.03em}
+  .brand .sub{font-size:11.5px;color:var(--mut);letter-spacing:.02em}
   .repo{font-size:11.5px;color:var(--mut);text-decoration:none;border:1px solid var(--line2);
     padding:6px 11px;border-radius:8px;background:var(--panel)}
   .repo:hover{color:var(--ink);border-color:var(--acc)}
-  /* stage rail */
   .rail{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
   .rail .st{flex:1;min-width:90px;display:flex;flex-direction:column;gap:6px;cursor:pointer}
   .rail .bar{height:4px;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
@@ -36,23 +34,20 @@
   @keyframes pulse{50%{opacity:.55}}
   .rail .lbl{font-size:10.5px;color:var(--faint);letter-spacing:.02em;text-transform:uppercase;font-weight:600}
   .rail .st.active .lbl,.rail .st.done .lbl{color:var(--ink)}
-  /* stage viewport */
   .stage{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
     border-radius:16px;box-shadow:var(--glow);min-height:430px;position:relative;overflow:hidden}
   .scene{display:none;padding:22px 24px;animation:fade .45s ease}
   .scene.on{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:3px}
+  .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:3px}
   .stitle{font-size:20px;font-weight:700;margin:0 0 3px;letter-spacing:-.01em}
-  .sdesc{font-size:13px;color:var(--mut);margin:0 0 16px;max-width:60ch}
-  /* chat mock */
-  .chat{display:flex;flex-direction:column;gap:9px;max-width:560px}
-  .msg{padding:10px 13px;border-radius:13px;font-size:13px;line-height:1.5;max-width:82%;opacity:0;transform:translateY(6px);animation:pop .35s forwards}
+  .sdesc{font-size:13px;color:var(--mut);margin:0 0 16px;max-width:64ch}
+  .chat{display:flex;flex-direction:column;gap:9px;max-width:600px}
+  .msg{padding:10px 13px;border-radius:13px;font-size:13px;line-height:1.5;max-width:86%;opacity:0;transform:translateY(6px);animation:pop .35s forwards}
   @keyframes pop{to{opacity:1;transform:none}}
   .msg.ai{background:var(--chip);border:1px solid var(--line2);align-self:flex-start;border-bottom-left-radius:4px}
   .msg.me{background:linear-gradient(135deg,var(--acc2),#5a78ff);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
   .msg .who{font-size:10px;text-transform:uppercase;letter-spacing:.05em;opacity:.7;margin-bottom:3px}
-  /* generic grid */
   .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
   .card h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:600}
@@ -62,7 +57,6 @@
   .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:var(--chip);
     border:1px solid var(--line2);color:var(--mut);margin:2px 3px 2px 0}
   .tag.hot{border-color:var(--acc);color:var(--acc)}
-  /* resume doc */
   .doc{background:#f6f7fb;color:#1a2030;border-radius:10px;padding:16px 18px;font-size:11px;line-height:1.5;
     box-shadow:0 20px 50px -20px #000;max-width:340px}
   .doc h5{margin:0;font-size:15px;color:#0d1220}
@@ -71,22 +65,18 @@
     border-bottom:1px solid #d5d9e6;padding-bottom:2px;margin:9px 0 5px;color:#333}
   .doc .hi{background:#fff3a8;padding:0 2px;border-radius:2px;transition:background .3s}
   .split{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
-  /* channel windows */
   .win{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--panel2)}
   .win .top{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600}
   .win .dot{width:9px;height:9px;border-radius:50%}
   .win .body{padding:12px}
   .badge{margin-left:auto;font-size:10px;padding:2px 8px;border-radius:6px;background:var(--chip);color:var(--good);border:1px solid var(--line2)}
-  /* metric row */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
   .stat{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 12px}
   .stat .n{font-size:22px;font-weight:750;letter-spacing:-.02em}
   .stat .l{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
   .n.acc{color:var(--acc)} .n.good{color:var(--good)} .n.blue{color:var(--acc2)}
-  /* progress bar in tailor */
   .meter{height:7px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
   .meter>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--good),var(--acc));border-radius:4px;transition:width 1.1s ease}
-  /* controls */
   .controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px}
   .btn{border:1px solid var(--line2);background:var(--panel);color:var(--ink);border-radius:10px;
     padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px}
@@ -96,8 +86,6 @@
   .dots i{width:8px;height:8px;border-radius:50%;background:var(--line2);cursor:pointer;transition:.2s}
   .dots i.on{background:var(--acc);transform:scale(1.25)}
   .disclaimer{text-align:center;color:var(--faint);font-size:11px;margin-top:16px;line-height:1.5}
-  .cursor::after{content:'▋';color:var(--acc);animation:blink 1s steps(1) infinite;margin-left:1px}
-  @keyframes blink{50%{opacity:0}}
   .chk{color:var(--good);font-weight:700}
   @media(max-width:640px){.row,.split{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.doc{max-width:none}}
 </style>
@@ -107,8 +95,8 @@
     <div class="brand">
       <div class="logo">J</div>
       <div>
-        <h1>JobHunter <span style="color:var(--mut);font-weight:400">— autopilot</span></h1>
-        <div class="sub">clone · onboard · tailor · reach out · follow up — on autopilot</div>
+        <h1>JobHunter <span style="color:var(--mut);font-weight:400">— автопилот</span></h1>
+        <div class="sub">клонируй · онбординг · тейлор · рассылка · follow-up — на автопилоте</div>
       </div>
     </div>
     <a class="repo" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank">★ github/JobHunter</a>
@@ -117,141 +105,140 @@
   <div class="rail" id="rail"></div>
 
   <div class="stage" id="stage">
-    <!-- 1 ONBOARD -->
+    <!-- 1 -->
     <div class="scene" data-s="0">
-      <div class="eyebrow">Step 1 — Onboarding</div>
-      <h2 class="stitle">It interviews you first</h2>
-      <p class="sdesc">Open the repo in Claude Code. It asks who you are, what you're hunting, and where — then builds your profile. No forms.</p>
+      <div class="eyebrow">Шаг 1 — Онбординг</div>
+      <h2 class="stitle">Сначала он расспрашивает тебя</h2>
+      <p class="sdesc">Открываешь репозиторий в Claude Code. Он спрашивает, кто ты, кого ищешь и где — и собирает твой профиль. Без анкет.</p>
       <div class="chat" id="chat0"></div>
     </div>
 
-    <!-- 2 MASTER RESUME -->
+    <!-- 2 -->
     <div class="scene" data-s="1">
-      <div class="eyebrow">Step 2 — Master résumé</div>
-      <h2 class="stitle">Your career, structured once</h2>
-      <p class="sdesc">From the interview it assembles a master résumé — the single source of truth every tailored version is generated from.</p>
+      <div class="eyebrow">Шаг 2 — Мастер-резюме</div>
+      <h2 class="stitle">Карьера, собранная один раз</h2>
+      <p class="sdesc">Из интервью он собирает мастер-резюме — единый источник правды, из которого генерируется каждая версия под вакансию.</p>
       <div class="split">
         <div class="doc" id="doc1"></div>
         <div class="card">
-          <h4>Extracted profile</h4>
-          <div class="kv"><span>Target roles</span><b>Product Manager · PO</b></div>
-          <div class="kv"><span>Seniority</span><b>Middle · Senior</b></div>
-          <div class="kv"><span>Format</span><b>Remote · contract</b></div>
-          <div class="kv"><span>Skills banked</span><b>45</b></div>
+          <h4>Извлечённый профиль</h4>
+          <div class="kv"><span>Целевые роли</span><b>Product Manager · PO</b></div>
+          <div class="kv"><span>Грейд</span><b>Middle · Senior</b></div>
+          <div class="kv"><span>Формат</span><b>Удалёнка · контракт</b></div>
+          <div class="kv"><span>Навыков в банке</span><b>45</b></div>
           <div style="margin-top:10px">
             <span class="tag hot">Product Strategy</span><span class="tag">Discovery</span>
             <span class="tag">Roadmap</span><span class="tag hot">A/B</span><span class="tag">SQL</span>
-            <span class="tag">Scrum</span><span class="tag">LLM automation</span>
+            <span class="tag">Scrum</span><span class="tag">LLM-автоматизация</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 3 TAILOR -->
+    <!-- 3 -->
     <div class="scene" data-s="2">
-      <div class="eyebrow">Step 3 — Per-vacancy tailoring</div>
-      <h2 class="stitle">A new résumé for every job</h2>
-      <p class="sdesc">Paste a vacancy. It matches the JD against your skill bank, rewrites the headline & skills line, and compiles a fresh PDF.</p>
+      <div class="eyebrow">Шаг 3 — Тейлор под вакансию</div>
+      <h2 class="stitle">Новое резюме под каждую вакансию</h2>
+      <p class="sdesc">Вставляешь вакансию. Он матчит описание с твоим банком навыков, переписывает заголовок и строку скиллов и компилирует свежий PDF.</p>
       <div class="split">
         <div class="doc" id="doc2">
-          <h5>Alex Doe</h5>
+          <h5>Алекс Доу</h5>
           <div class="role" id="doc2role">Product Manager</div>
-          <div class="sec">Summary</div>
-          <div id="doc2sum">Product manager focused on outcomes over output.</div>
-          <div class="sec">Skills</div>
+          <div class="sec">О себе</div>
+          <div id="doc2sum">Продакт, ориентированный на результат, а не на факт релиза.</div>
+          <div class="sec">Навыки</div>
           <div id="doc2skills">Product Strategy · Discovery · Roadmap · Analytics</div>
         </div>
         <div>
           <div class="card" style="margin-bottom:12px">
-            <h4>Vacancy → match</h4>
-            <div class="kv"><span>Role</span><b>Senior PM · FinTech</b></div>
-            <div class="kv"><span>ATS coverage</span><b id="atsN">0%</b></div>
+            <h4>Вакансия → матч</h4>
+            <div class="kv"><span>Роль</span><b>Senior PM · FinTech</b></div>
+            <div class="kv"><span>Покрытие ATS</span><b id="atsN">0%</b></div>
             <div class="meter"><i id="atsBar"></i></div>
           </div>
           <div class="card">
-            <h4>Injected for this JD</h4>
+            <h4>Вставлено под эту вакансию</h4>
             <div id="inj"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4 OUTREACH -->
+    <!-- 4 -->
     <div class="scene" data-s="3">
-      <div class="eyebrow">Step 4 — Multi-channel outreach</div>
-      <h2 class="stitle">It writes & sends across every channel</h2>
-      <p class="sdesc">Telegram job chats, hh.ru, Hirify — a personalized message per recruiter, résumé attached. Rate-limited, review-first by default.</p>
+      <div class="eyebrow">Шаг 4 — Рассылка по каналам</div>
+      <h2 class="stitle">Он сам пишет и шлёт по всем каналам</h2>
+      <p class="sdesc">Telegram-каналы, hh.ru, Hirify — персональное сообщение каждому HR, резюме приложено. С рейт-лимитами, по умолчанию с ревью перед отправкой.</p>
       <div class="row">
         <div class="win">
-          <div class="top"><span class="dot" style="background:var(--tg)"></span>Telegram · @hr_channel<span class="badge" id="tgBadge">drafting…</span></div>
+          <div class="top"><span class="dot" style="background:var(--tg)"></span>Telegram · @hr_channel<span class="badge" id="tgBadge">черновик…</span></div>
           <div class="body"><div class="chat" id="chatTG"></div></div>
         </div>
         <div class="win">
-          <div class="top"><span class="dot" style="background:var(--hh)"></span>hh.ru · chat<span class="badge" id="hhBadge">drafting…</span></div>
+          <div class="top"><span class="dot" style="background:var(--hh)"></span>hh.ru · чат<span class="badge" id="hhBadge">черновик…</span></div>
           <div class="body"><div class="chat" id="chatHH"></div></div>
         </div>
       </div>
       <div class="win" style="margin-top:12px">
-        <div class="top"><span class="dot" style="background:var(--hi)"></span>Hirify · per-vacancy apply<span class="badge" id="hiBadge">drafting…</span></div>
+        <div class="top"><span class="dot" style="background:var(--hi)"></span>Hirify · отклик под вакансию<span class="badge" id="hiBadge">черновик…</span></div>
         <div class="body"><div class="chat" id="chatHI"></div></div>
       </div>
     </div>
 
-    <!-- 5 FOLLOWUP + FORMS -->
+    <!-- 5 -->
     <div class="scene" data-s="4">
-      <div class="eyebrow">Step 5 — Follow-ups & forms</div>
-      <h2 class="stitle">It chases replies and fills the forms</h2>
-      <p class="sdesc">No answer in N days? A polite nudge goes out. Application form in the way? It fills your details and submits.</p>
+      <div class="eyebrow">Шаг 5 — Follow-up и формы</div>
+      <h2 class="stitle">Он догоняет молчунов и заполняет формы</h2>
+      <p class="sdesc">Нет ответа N дней? Уходит вежливое напоминание. Мешает форма отклика? Он заполняет твои данные и отправляет.</p>
       <div class="row">
         <div class="win">
-          <div class="top"><span class="dot" style="background:var(--warn)"></span>Follow-up engine<span class="badge">auto</span></div>
+          <div class="top"><span class="dot" style="background:var(--warn)"></span>Движок follow-up<span class="badge">авто</span></div>
           <div class="body"><div class="chat" id="chatFU"></div></div>
         </div>
         <div class="win">
-          <div class="top"><span class="dot" style="background:var(--good)"></span>Form auto-fill<span class="badge" id="formBadge">filling…</span></div>
+          <div class="top"><span class="dot" style="background:var(--good)"></span>Авто-заполнение формы<span class="badge" id="formBadge">заполняю…</span></div>
           <div class="body">
-            <div class="kv"><span>Full name</span><b class="fx" data-d="360">Alex Doe</b></div>
-            <div class="kv"><span>Email</span><b class="fx" data-d="620">alex.doe@example.com</b></div>
-            <div class="kv"><span>Expected salary</span><b class="fx" data-d="880">$3,500 / mo</b></div>
-            <div class="kv"><span>Experience with SQL?</span><b class="fx" data-d="1140">Yes — funnels & cohorts</b></div>
-            <div class="kv"><span>Résumé</span><b class="fx" data-d="1400">alex_doe_cv.pdf ✓</b></div>
+            <div class="kv"><span>Имя</span><b class="fx" data-d="360">Алекс Доу</b></div>
+            <div class="kv"><span>Почта</span><b class="fx" data-d="620">alex.doe@example.com</b></div>
+            <div class="kv"><span>Зарплатные ожидания</span><b class="fx" data-d="880">$3 500 / мес</b></div>
+            <div class="kv"><span>Опыт с SQL?</span><b class="fx" data-d="1140">Да — воронки и когорты</b></div>
+            <div class="kv"><span>Резюме</span><b class="fx" data-d="1400">alex_doe_cv.pdf ✓</b></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 6 DASHBOARD -->
+    <!-- 6 -->
     <div class="scene" data-s="5">
-      <div class="eyebrow">Step 6 — Command deck</div>
-      <h2 class="stitle">Every application, one board</h2>
-      <p class="sdesc">Live pipeline: what's sent, who replied, what needs you. The filename-equals-ad-name rule keeps every stat traceable.</p>
+      <div class="eyebrow">Шаг 6 — Командный пульт</div>
+      <h2 class="stitle">Все отклики на одном экране</h2>
+      <p class="sdesc">Живой пайплайн: что отправлено, кто ответил, что требует тебя. Правило «имя файла = имя объявления» держит каждую цифру связанной с креативом.</p>
       <div class="stats">
-        <div class="stat"><div class="n acc" id="d0">0</div><div class="l">Applied</div></div>
-        <div class="stat"><div class="n blue" id="d1">0</div><div class="l">Replied</div></div>
-        <div class="stat"><div class="n good" id="d2">0</div><div class="l">Interviews</div></div>
-        <div class="stat"><div class="n" id="d3">0</div><div class="l">Sources</div></div>
+        <div class="stat"><div class="n acc" id="d0">0</div><div class="l">Отклики</div></div>
+        <div class="stat"><div class="n blue" id="d1">0</div><div class="l">Ответили</div></div>
+        <div class="stat"><div class="n good" id="d2">0</div><div class="l">Интервью</div></div>
+        <div class="stat"><div class="n" id="d3">0</div><div class="l">Источников</div></div>
       </div>
       <div class="card" style="margin-top:14px">
-        <h4>Live feed</h4>
+        <h4>Живой фид</h4>
         <div class="chat" id="feed"></div>
       </div>
     </div>
   </div>
 
   <div class="controls">
-    <button class="btn" id="prev">‹ Back</button>
-    <button class="btn primary" id="play">▶ Play</button>
-    <button class="btn" id="next">Next ›</button>
+    <button class="btn" id="prev">‹ Назад</button>
+    <button class="btn primary" id="play">▶ Играть</button>
+    <button class="btn" id="next">Дальше ›</button>
     <div class="dots" id="dots"></div>
   </div>
-  <p class="disclaimer">Mock walkthrough with a fictional persona. You review every message before it sends (rate-limited by default). You're responsible for each platform's Terms of Service. · Built by Egor Nikolaev</p>
+  <p class="disclaimer">Демонстрация с вымышленным персонажем. Каждое сообщение ты ревьюишь перед отправкой (по умолчанию, с рейт-лимитами). Ты отвечаешь за соблюдение правил каждой платформы. · Сделал Егор Николаев</p>
 </div>
 
 <script>
-const STAGES=["Onboard","Master résumé","Tailor","Outreach","Follow-up","Dashboard"];
+const STAGES=["Онбординг","Мастер-резюме","Тейлор","Рассылка","Follow-up","Дашборд"];
 let cur=0, playing=false, timers=[], playTimer=null;
 
-// build rail + dots
 const rail=document.getElementById('rail'), dots=document.getElementById('dots');
 STAGES.forEach((s,i)=>{
   const st=document.createElement('div'); st.className='st'; st.dataset.i=i;
@@ -271,7 +258,6 @@ function go(i){ if(i<0||i>=STAGES.length)return; cur=i; clearTimers(); paint(); 
 function next(){ if(cur<STAGES.length-1) go(cur+1); else stop(); }
 function prev(){ go(cur-1); }
 
-// ---- message helper
 function bubble(host,cls,who,text,delay){
   T(()=>{
     const m=document.createElement('div'); m.className='msg '+cls;
@@ -280,23 +266,22 @@ function bubble(host,cls,who,text,delay){
   },delay);
 }
 
-// ---- per-stage scripts
 function run(i){
   if(i===0){
     const c=document.getElementById('chat0'); c.innerHTML='';
-    bubble(c,'ai','Claude','Hey — let\'s set you up. What roles are you hunting, and where?',300);
-    bubble(c,'me','You','Product Manager, middle/senior. Remote, contract-friendly.',1500);
-    bubble(c,'ai','Claude','Got it. Which channels should I work — Telegram job channels, hh.ru, Hirify, LinkedIn?',2600);
-    bubble(c,'me','You','All of them. Here are the TG channels I follow 👇',3900);
-    bubble(c,'ai','Claude','Perfect. Tell me your strengths & wins — I\'ll turn them into a master résumé. ✎',4900);
+    bubble(c,'ai','Claude','Привет — давай настроим тебя. Какие роли ищешь и где?',300);
+    bubble(c,'me','Ты','Product Manager, middle/senior. Удалёнка, готов к контракту.',1500);
+    bubble(c,'ai','Claude','Понял. С какими каналами работаем — Telegram-каналы, hh.ru, Hirify, LinkedIn?',2600);
+    bubble(c,'me','Ты','Со всеми. Вот TG-каналы, которые я читаю 👇',3900);
+    bubble(c,'ai','Claude','Отлично. Расскажи про сильные стороны и достижения — соберу из них мастер-резюме. ✎',4900);
   }
   if(i===1){
     const d=document.getElementById('doc1');
-    d.innerHTML='<h5>Alex Doe</h5><div class="role">Product Manager · SaaS</div>';
-    const secs=[['Summary','Outcome-driven PM. Ships features from problem to measured impact.'],
-      ['Experience','Owned a B2B SaaS product end-to-end · +15% conversion via A/B'],
-      ['Skills','Product Strategy · Discovery · Roadmap · SQL · Scrum · LLM automation'],
-      ['Education','B.Sc. — placeholder']];
+    d.innerHTML='<h5>Алекс Доу</h5><div class="role">Product Manager · SaaS</div>';
+    const secs=[['О себе','Продакт, нацеленный на результат. Ведёт фичу от проблемы до замеренного эффекта.'],
+      ['Опыт','Вёл B2B SaaS-продукт от и до · +15% к конверсии через A/B'],
+      ['Навыки','Product Strategy · Discovery · Roadmap · SQL · Scrum · LLM-автоматизация'],
+      ['Образование','Бакалавр — плейсхолдер']];
     secs.forEach((s,k)=>T(()=>{d.innerHTML+=`<div class="sec">${s[0]}</div><div>${s[1]}</div>`},500+k*550));
   }
   if(i===2){
@@ -305,56 +290,53 @@ function run(i){
     role.textContent='Product Manager'; sk.textContent='Product Strategy · Discovery · Roadmap · Analytics';
     inj.innerHTML='';
     T(()=>{role.innerHTML='Senior Product Manager · <span class="hi">FinTech</span>'},700);
-    T(()=>{sum.innerHTML='Senior PM in <span class="hi">FinTech</span>, focused on <span class="hi">conversion</span> & unit-economics.'},1100);
-    T(()=>{sk.innerHTML='Product Strategy · <span class="hi">Payments</span> · <span class="hi">A/B testing</span> · SQL · <span class="hi">Roadmap</span> · Scrum'},1500);
-    // ats bar
+    T(()=>{sum.innerHTML='Senior PM в <span class="hi">FinTech</span>, фокус на <span class="hi">конверсии</span> и юнит-экономике.'},1100);
+    T(()=>{sk.innerHTML='Product Strategy · <span class="hi">Платежи</span> · <span class="hi">A/B-тесты</span> · SQL · <span class="hi">Roadmap</span> · Scrum'},1500);
     T(()=>{document.getElementById('atsBar').style.width='71%';let n=0;const iv=setInterval(()=>{n+=3;if(n>=71){n=71;clearInterval(iv)}document.getElementById('atsN').textContent=n+'%'},30)},900);
-    ['FinTech','Payments','A/B testing','Unit-economics','Roadmap'].forEach((t,k)=>
+    ['FinTech','Платежи','A/B-тесты','Юнит-экономика','Roadmap'].forEach((t,k)=>
       T(()=>{const s=document.createElement('span');s.className='tag hot';s.textContent='+ '+t;inj.appendChild(s)},1600+k*260));
   }
   if(i===3){
     const tg=document.getElementById('chatTG'),hh=document.getElementById('chatHH'),hi=document.getElementById('chatHI');
     tg.innerHTML='';hh.innerHTML='';hi.innerHTML='';
-    setBadge('tgBadge','drafting…','var(--mut)');setBadge('hhBadge','drafting…','var(--mut)');setBadge('hiBadge','drafting…','var(--mut)');
-    bubble(tg,'me','→ @hr_channel','Hi! Saw your PM opening. 7 yrs in SaaS, +15% conversion via A/B. CV attached 📎',500);
-    T(()=>setBadge('tgBadge','sent ✓','var(--good)'),1500);
+    setBadge('tgBadge','черновик…','var(--mut)');setBadge('hhBadge','черновик…','var(--mut)');setBadge('hiBadge','черновик…','var(--mut)');
+    bubble(tg,'me','→ @hr_channel','Здравствуйте! Видел вашу вакансию PM. 7 лет в SaaS, +15% к конверсии через A/B. Резюме приложил 📎',500);
+    T(()=>setBadge('tgBadge','отправлено ✓','var(--good)'),1500);
     bubble(hh,'me','→ hh.ru','Здравствуйте! Откликаюсь на Senior PM. Веду продукт от проблемы до замеренного эффекта. Резюме приложил.',1100);
-    T(()=>setBadge('hhBadge','sent ✓','var(--good)'),2100);
-    bubble(hi,'me','→ Hirify','Applied to “Senior PM · FinTech” — tailored CV + cover generated for this exact JD.',1700);
-    T(()=>setBadge('hiBadge','applied ✓','var(--good)'),2700);
-    bubble(tg,'ai','← reply','Отлично, спасибо! Давайте созвон? Держите слот 👇',3600);
+    T(()=>setBadge('hhBadge','отправлено ✓','var(--good)'),2100);
+    bubble(hi,'me','→ Hirify','Откликнулся на «Senior PM · FinTech» — резюме и сопровод сгенерированы под эту вакансию.',1700);
+    T(()=>setBadge('hiBadge','отклик ✓','var(--good)'),2700);
+    bubble(tg,'ai','← ответ','Отлично, спасибо! Давайте созвон? Держите слот 👇',3600);
   }
   if(i===4){
     const fu=document.getElementById('chatFU'); fu.innerHTML='';
-    bubble(fu,'ai','day 0','Message sent to 3 recruiters.',400);
-    bubble(fu,'ai','day 3 · no reply','Auto-nudge queued for 2 chats…',1400);
-    bubble(fu,'me','→ follow-up','Hi again — just floating this back up. Happy to answer anything or hop on a quick call.',2400);
-    bubble(fu,'ai','result','1 reply reopened ✓',3600);
-    // form fill
-    setBadge('formBadge','filling…','var(--mut)');
+    bubble(fu,'ai','день 0','Сообщение отправлено 3 рекрутёрам.',400);
+    bubble(fu,'ai','день 3 · нет ответа','Авто-напоминание в очереди для 2 чатов…',1400);
+    bubble(fu,'me','→ follow-up','Здравствуйте ещё раз — поднимаю сообщение выше. Готов ответить на вопросы или созвониться.',2400);
+    bubble(fu,'ai','итог','1 ответ реактивирован ✓',3600);
+    setBadge('formBadge','заполняю…','var(--mut)');
     document.querySelectorAll('#stage .fx').forEach(el=>{const d=+el.dataset.d;const txt=el.textContent;el.textContent='';T(()=>{el.textContent=txt;el.style.color='var(--good)'},d)});
-    T(()=>setBadge('formBadge','submitted ✓','var(--good)'),1700);
+    T(()=>setBadge('formBadge','отправлено ✓','var(--good)'),1700);
   }
   if(i===5){
     countTo('d0',48,900);countTo('d1',11,900);countTo('d2',2,900);countTo('d3',4,900);
     const f=document.getElementById('feed'); f.innerHTML='';
-    bubble(f,'ai','Innovate · hh','Moved to “Interview” — 5 screening questions answered ✓',500);
-    bubble(f,'me','Umnix · hh','Test case sent · deadline tracked',1400);
-    bubble(f,'ai','TG · @products','New reply — recruiter shared a Calendly',2300);
-    bubble(f,'ai','summary','4 live conversations · 2 interviews · 0 of your data leaked',3300);
+    bubble(f,'ai','Innovate · hh','Перешёл в «Собеседование» — 5 скрининг-вопросов закрыто ✓',500);
+    bubble(f,'me','Умникс · hh','Тестовый кейс отправлен · дедлайн под контролем',1400);
+    bubble(f,'ai','TG · @products','Новый ответ — рекрутёр прислал Calendly',2300);
+    bubble(f,'ai','сводка','4 живых диалога · 2 интервью · 0 твоих данных не утекло',3300);
   }
 }
 function setBadge(id,txt,col){const b=document.getElementById(id);if(b){b.textContent=txt;b.style.color=col}}
 function countTo(id,to,ms){const el=document.getElementById(id);let n=0;const step=Math.max(1,Math.round(to/(ms/40)));const iv=setInterval(()=>{n+=step;if(n>=to){n=to;clearInterval(iv)}el.textContent=n},40)}
 
-// controls
 document.getElementById('next').onclick=()=>{stop();next()};
 document.getElementById('prev').onclick=()=>{stop();prev()};
 const playBtn=document.getElementById('play');
 playBtn.onclick=()=>playing?stop():play();
-function play(){playing=true;playBtn.textContent='⏸ Pause';tick()}
-function stop(){playing=false;playBtn.textContent='▶ Play';clearTimeout(playTimer)}
-function tick(){ if(!playing)return; if(cur>=STAGES.length-1){go(0)} else {}
+function play(){playing=true;playBtn.textContent='⏸ Пауза';tick()}
+function stop(){playing=false;playBtn.textContent='▶ Играть';clearTimeout(playTimer)}
+function tick(){ if(!playing)return;
   playTimer=setTimeout(()=>{ if(!playing)return; if(cur<STAGES.length-1){go(cur+1);tick()} else {stop()} },5200); }
 
 go(0);

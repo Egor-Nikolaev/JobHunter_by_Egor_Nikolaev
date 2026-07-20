@@ -1,6 +1,6 @@
-<title>JobHunter — your job search on autopilot</title>
+<title>JobHunter — поиск работы на автопилоте</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An open-source, Claude Code-native autopilot for your job search. Tailors your resume per vacancy and drafts personalized outreach across every channel.">
+<meta name="description" content="Открытый автопилот для поиска работы на Claude Code. Тейлорит резюме под каждую вакансию и пишет персональные сообщения HR-ам по всем каналам.">
 <style>
   :root{
     --bg:#080b12; --bg2:#0b0f18; --panel:#111725; --line:#1c2434; --line2:#2a3448;
@@ -16,38 +16,38 @@
   a{color:inherit}
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
   .mono{font-family:var(--mono)}
-  /* ambient radar glow */
   .aura{position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
       radial-gradient(900px 500px at 78% -8%, rgba(109,140,255,.16), transparent 60%),
       radial-gradient(760px 460px at 5% 8%, rgba(58,214,222,.12), transparent 55%),
       radial-gradient(600px 600px at 50% 120%, rgba(58,214,222,.06), transparent 60%)}
-  /* nav */
-  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:12px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:700}
   .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--acc),var(--acc2));
     display:grid;place-items:center;color:#04121a;font-weight:800;box-shadow:0 6px 22px -6px var(--acc)}
-  .navlinks{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--mut)}
+  .navlinks{display:flex;gap:20px;align-items:center;font-size:14px;color:var(--mut)}
   .navlinks a{text-decoration:none}.navlinks a:hover{color:var(--ink)}
   .ghbtn{border:1px solid var(--line2);padding:7px 13px;border-radius:9px;background:var(--panel);color:var(--ink)!important}
   .ghbtn:hover{border-color:var(--acc)}
-  /* hero */
-  .hero{padding:64px 0 40px;text-align:center;position:relative}
+  .lang{display:flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;font-size:12.5px;font-weight:600}
+  .lang button{background:transparent;color:var(--mut);border:none;padding:7px 11px;cursor:pointer;font-family:inherit}
+  .lang button.on{background:var(--acc);color:#04121a}
+  @media(max-width:720px){.navlinks .hidem{display:none}}
+  .hero{padding:60px 0 40px;text-align:center;position:relative}
   .pill{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:var(--acc);
     border:1px solid var(--line2);background:rgba(58,214,222,.06);padding:6px 13px;border-radius:999px;margin-bottom:22px;letter-spacing:.02em}
   .pill i{width:6px;height:6px;border-radius:50%;background:var(--good);box-shadow:0 0 8px var(--good)}
-  h1{font-size:clamp(38px,7vw,72px);line-height:1.02;margin:0 0 18px;letter-spacing:-.03em;font-weight:800;text-wrap:balance}
+  h1{font-size:clamp(36px,7vw,70px);line-height:1.03;margin:0 0 18px;letter-spacing:-.03em;font-weight:800;text-wrap:balance}
   h1 .g{background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lede{font-size:clamp(16px,2.2vw,20px);color:var(--mut);max-width:60ch;margin:0 auto 30px;line-height:1.55}
+  .lede{font-size:clamp(16px,2.2vw,20px);color:var(--mut);max-width:62ch;margin:0 auto 30px;line-height:1.55}
   .cta{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
   .btn{padding:14px 24px;border-radius:12px;font-size:15px;font-weight:650;text-decoration:none;
-    display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;transition:.18s}
+    display:inline-flex;align-items:center;gap:9px;border:1px solid transparent;transition:.18s;cursor:pointer}
   .btn.primary{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04121a;box-shadow:0 12px 34px -12px var(--acc)}
   .btn.primary:hover{transform:translateY(-2px)}
   .btn.ghost{border-color:var(--line2);color:var(--ink);background:var(--panel)}
   .btn.ghost:hover{border-color:var(--acc)}
   .heronote{margin-top:16px;font-size:12.5px;color:var(--faint)}
-  /* terminal mock */
   .term{max-width:720px;margin:44px auto 0;border:1px solid var(--line2);border-radius:14px;
     background:linear-gradient(180deg,#0d1220,#0a0e18);box-shadow:0 40px 90px -40px #000,0 0 0 1px rgba(58,214,222,.06);
     text-align:left;overflow:hidden}
@@ -55,12 +55,10 @@
   .term .bar b{width:11px;height:11px;border-radius:50%;display:inline-block}
   .term .body{padding:16px 18px;font-family:var(--mono);font-size:13px;line-height:1.85}
   .term .p{color:var(--acc)}.term .c{color:var(--ink)}.term .o{color:var(--mut)}.term .ok{color:var(--good)}
-  /* sections */
-  section{padding:64px 0}
+  section{padding:60px 0}
   .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
-  h2{font-size:clamp(26px,4vw,38px);margin:0 0 14px;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
-  .sub{color:var(--mut);font-size:16px;max-width:62ch;line-height:1.6;margin:0 0 34px}
-  /* pipeline */
+  h2{font-size:clamp(25px,4vw,37px);margin:0 0 14px;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+  .sub{color:var(--mut);font-size:16px;max-width:64ch;line-height:1.6;margin:0 0 34px}
   .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
   .step{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 14px;position:relative}
   .step .num{font-family:var(--mono);font-size:11px;color:var(--acc)}
@@ -68,28 +66,24 @@
   .step p{margin:0;font-size:12.5px;color:var(--mut);line-height:1.5}
   .step::after{content:'→';position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--line2);font-size:14px;z-index:2}
   .step:last-child::after{display:none}
-  /* feature grid */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .feat{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:15px;padding:22px}
   .feat .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:20px;
     background:rgba(58,214,222,.08);border:1px solid var(--line2);margin-bottom:13px}
   .feat h3{margin:0 0 7px;font-size:16.5px}
   .feat p{margin:0;font-size:13.5px;color:var(--mut);line-height:1.55}
-  /* privacy band */
   .band{background:linear-gradient(120deg,rgba(58,214,222,.07),rgba(109,140,255,.07));
     border:1px solid var(--line2);border-radius:18px;padding:34px 30px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center}
   .band h2{margin:0 0 10px}
   .checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
   .checks li{display:flex;gap:10px;font-size:14px;color:var(--ink)}
   .checks .ck{color:var(--good);font-weight:800}
-  /* final cta */
-  .final{text-align:center;padding:74px 0}
-  .final h2{font-size:clamp(28px,5vw,46px)}
-  /* footer */
+  .final{text-align:center;padding:70px 0}
+  .final h2{font-size:clamp(27px,5vw,45px)}
   footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--faint);font-size:13px;
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
   footer a{color:var(--mut);text-decoration:none}footer a:hover{color:var(--ink)}
-  .disc{max-width:100%;margin-top:22px;font-size:12px;color:var(--faint);line-height:1.6;
+  .disc{margin-top:22px;font-size:12px;color:var(--faint);line-height:1.6;
     border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg2)}
   @media(max-width:820px){.flow{grid-template-columns:repeat(2,1fr)}.step::after{display:none}.grid{grid-template-columns:1fr}.band{grid-template-columns:1fr}}
 </style>
@@ -100,101 +94,148 @@
   <nav>
     <div class="brand"><span class="logo">J</span>JobHunter</div>
     <div class="navlinks">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#privacy">Your data</a>
+      <a class="hidem" href="#how" data-ru="Как работает" data-en="How it works">Как работает</a>
+      <a class="hidem" href="#features" data-ru="Фичи" data-en="Features">Фичи</a>
+      <a class="hidem" href="#privacy" data-ru="Твои данные" data-en="Your data">Твои данные</a>
+      <div class="lang"><button data-lang="ru" class="on">RU</button><button data-lang="en">EN</button></div>
       <a class="ghbtn" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank">★ GitHub</a>
     </div>
   </nav>
 
   <header class="hero">
-    <span class="pill"><i></i>Open-source · Claude Code-native</span>
-    <h1>Your job search,<br><span class="g">on autopilot.</span></h1>
-    <p class="lede">Clone the repo, open it in Claude Code, and it takes over the grind: a résumé <b>tailored to every vacancy</b>, a <b>personalized message for every recruiter</b>, follow-ups, forms, and one board to watch it all. Your data never leaves your machine.</p>
+    <span class="pill"><i></i><span data-ru="Открытый код · нативно в Claude Code" data-en="Open-source · Claude Code-native">Открытый код · нативно в Claude Code</span></span>
+    <h1 data-ru='Поиск работы<br><span class="g">на автопилоте.</span>' data-en='Your job search,<br><span class="g">on autopilot.</span>'>Поиск работы<br><span class="g">на автопилоте.</span></h1>
+    <p class="lede"
+       data-ru='Клонируй репозиторий, открой в Claude Code — и он берёт рутину на себя: резюме <b>под каждую вакансию</b>, <b>персональное сообщение каждому HR</b>, follow-up, формы и один экран, чтобы за всем следить. Твои данные не покидают твой компьютер.'
+       data-en='Clone the repo, open it in Claude Code, and it takes over the grind: a résumé <b>tailored to every vacancy</b>, a <b>personalized message for every recruiter</b>, follow-ups, forms, and one board to watch it all. Your data never leaves your machine.'>
+    </p>
     <div class="cta">
-      <a class="btn primary" href="https://claude.ai/code/artifact/457ecc64-b6fc-4cd6-b1a2-82a42578f4aa" target="_blank">▶ Watch the live demo</a>
-      <a class="btn ghost" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank">★ Get it on GitHub</a>
+      <a class="btn primary" href="https://claude.ai/code/artifact/457ecc64-b6fc-4cd6-b1a2-82a42578f4aa" target="_blank" data-ru="▶ Смотреть демо" data-en="▶ Watch the live demo">▶ Смотреть демо</a>
+      <a class="btn ghost" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank" data-ru="★ Забрать на GitHub" data-en="★ Get it on GitHub">★ Забрать на GitHub</a>
     </div>
-    <div class="heronote">MIT licensed · bring your own keys · review-first by default</div>
+    <div class="heronote" data-ru="Лицензия MIT · свои ключи · по умолчанию с ревью перед отправкой" data-en="MIT licensed · bring your own keys · review-first by default">Лицензия MIT · свои ключи · по умолчанию с ревью перед отправкой</div>
 
     <div class="term">
       <div class="bar"><b style="background:#f2646f"></b><b style="background:#f0b74a"></b><b style="background:#3ad99a"></b>&nbsp;&nbsp;~/JobHunter — claude</div>
-      <div class="body">
-        <div><span class="p">›</span> <span class="c">clone → open in Claude Code</span></div>
-        <div><span class="o">✓ onboarding: who are you, what are you hunting?</span></div>
-        <div><span class="o">✓ master résumé built from your wins</span></div>
-        <div><span class="c">›</span> <span class="c">new vacancy: “Senior PM · FinTech”</span></div>
-        <div><span class="o">✓ tailored CV compiled · ATS match </span><span class="ok">71%</span></div>
-        <div><span class="o">✓ personalized outreach → Telegram · hh · Hirify </span><span class="ok">sent</span></div>
-        <div><span class="o">✓ follow-up queued · form auto-filled</span></div>
-        <div><span class="p">›</span> <span class="ok">4 live conversations · 2 interviews_</span></div>
-      </div>
+      <div class="body" id="term"></div>
     </div>
   </header>
 
   <section id="how">
-    <div class="kick">How it works</div>
-    <h2>Six stages. One command each.</h2>
-    <p class="sub">It mirrors how a sharp operator actually runs a search — just without the copy-paste, the tab chaos, and the forgotten follow-ups.</p>
-    <div class="flow">
-      <div class="step"><div class="num">01</div><h4>Onboard</h4><p>It interviews you and builds your profile.</p></div>
-      <div class="step"><div class="num">02</div><h4>Master résumé</h4><p>Your career, structured once.</p></div>
-      <div class="step"><div class="num">03</div><h4>Tailor</h4><p>A fresh CV + cover per vacancy.</p></div>
-      <div class="step"><div class="num">04</div><h4>Reach out</h4><p>Personalized message per recruiter.</p></div>
-      <div class="step"><div class="num">05</div><h4>Follow up</h4><p>Chases silence, fills forms.</p></div>
-      <div class="step"><div class="num">06</div><h4>Track</h4><p>Every application on one board.</p></div>
-    </div>
+    <div class="kick" data-ru="Как это работает" data-en="How it works">Как это работает</div>
+    <h2 data-ru="Шесть шагов. По одной команде." data-en="Six stages. One command each.">Шесть шагов. По одной команде.</h2>
+    <p class="sub" data-ru="Повторяет то, как реально ведёт поиск толковый человек — только без копипаста, хаоса из вкладок и забытых follow-up." data-en="It mirrors how a sharp operator actually runs a search — just without the copy-paste, the tab chaos, and the forgotten follow-ups.">—</p>
+    <div class="flow" id="flow"></div>
   </section>
 
   <section id="features">
-    <div class="kick">What's inside</div>
-    <h2>Built for volume, tuned for signal.</h2>
-    <p class="sub">The whole pipeline is scripted and config-driven. You bring the keys; it brings the throughput.</p>
-    <div class="grid">
-      <div class="feat"><div class="ic">🎯</div><h3>Per-vacancy tailoring</h3><p>Matches each job description against your skill bank, rewrites the headline and skills line, and compiles a clean PDF. Filename equals ad name, so every stat stays traceable.</p></div>
-      <div class="feat"><div class="ic">📡</div><h3>Multi-channel outreach</h3><p>Telegram job channels, hh.ru, Hirify — a distinct, personalized message per recruiter with your résumé attached. LinkedIn-ready.</p></div>
-      <div class="feat"><div class="ic">↩️</div><h3>Follow-ups that don't forget</h3><p>No reply in N days? A polite nudge goes out automatically. The tail of a funnel is where most people quietly lose interviews.</p></div>
-      <div class="feat"><div class="ic">📝</div><h3>Form auto-fill</h3><p>Application form in the way? It fills your details from your profile and — if you let it — submits.</p></div>
-      <div class="feat"><div class="ic">📊</div><h3>Command deck</h3><p>A live dashboard: sent, replied, interviews, by source. See what needs you at a glance.</p></div>
-      <div class="feat"><div class="ic">🌍</div><h3>Bring your own proxy</h3><p>Region-locked board? Plug in your own proxy key for access. Nothing hardcoded, nothing shared.</p></div>
-    </div>
+    <div class="kick" data-ru="Что внутри" data-en="What's inside">Что внутри</div>
+    <h2 data-ru="Собран под объём, настроен на сигнал." data-en="Built for volume, tuned for signal.">—</h2>
+    <p class="sub" data-ru="Весь пайплайн заскриптован и управляется конфигом. Ты приносишь ключи — он приносит пропускную способность." data-en="The whole pipeline is scripted and config-driven. You bring the keys; it brings the throughput.">—</p>
+    <div class="grid" id="grid"></div>
   </section>
 
   <section id="privacy">
     <div class="band">
       <div>
-        <div class="kick">Your data stays yours</div>
-        <h2>Zero secrets in the box.</h2>
-        <p class="sub" style="margin-bottom:0">The repo ships with a fictional persona and placeholder keys only. You fill your own config locally — it's git-ignored by default. No accounts, no telemetry, no data leaving your machine.</p>
+        <div class="kick" data-ru="Твои данные — только твои" data-en="Your data stays yours">—</div>
+        <h2 data-ru="Ноль секретов в коробке." data-en="Zero secrets in the box.">—</h2>
+        <p class="sub" style="margin-bottom:0"
+           data-ru="Репозиторий идёт с вымышленным персонажем и только плейсхолдерами ключей. Свой конфиг ты заполняешь локально — он по умолчанию в .gitignore. Ни аккаунтов, ни телеметрии, ни данных, покидающих твой компьютер."
+           data-en="The repo ships with a fictional persona and placeholder keys only. You fill your own config locally — it's git-ignored by default. No accounts, no telemetry, no data leaving your machine.">—</p>
       </div>
-      <ul class="checks">
-        <li><span class="ck">✓</span> Bring your own API & proxy keys</li>
-        <li><span class="ck">✓</span> Review-first: nothing sends without you (by default)</li>
-        <li><span class="ck">✓</span> Built-in rate limits</li>
-        <li><span class="ck">✓</span> Config &amp; résumé git-ignored</li>
-        <li><span class="ck">✓</span> MIT licensed, fully auditable</li>
-      </ul>
+      <ul class="checks" id="checks"></ul>
     </div>
   </section>
 
   <section class="final">
-    <div class="kick" style="text-align:center">Ready?</div>
-    <h2>Stop copy-pasting.<br>Start shipping applications.</h2>
+    <div class="kick" style="text-align:center" data-ru="Готов?" data-en="Ready?">Готов?</div>
+    <h2 data-ru="Хватит копипастить.<br>Начни отправлять отклики." data-en="Stop copy-pasting.<br>Start shipping applications.">—</h2>
     <div class="cta" style="margin-top:26px">
-      <a class="btn primary" href="https://claude.ai/code/artifact/457ecc64-b6fc-4cd6-b1a2-82a42578f4aa" target="_blank">▶ Watch the demo</a>
-      <a class="btn ghost" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank">★ Clone on GitHub</a>
+      <a class="btn primary" href="https://claude.ai/code/artifact/457ecc64-b6fc-4cd6-b1a2-82a42578f4aa" target="_blank" data-ru="▶ Смотреть демо" data-en="▶ Watch the demo">▶ Смотреть демо</a>
+      <a class="btn ghost" href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank" data-ru="★ Клонировать на GitHub" data-en="★ Clone on GitHub">★ Клонировать на GitHub</a>
     </div>
-    <div class="disc mono">
-      Disclaimer — JobHunter is an automation aid. You are responsible for complying with each platform's Terms of Service. Automated messaging can lead to account limits; always review generated messages before sending and respect recruiters' time. Rate limits exist for a reason.
-    </div>
+    <div class="disc mono"
+      data-ru="Дисклеймер — JobHunter это инструмент автоматизации. Ты отвечаешь за соблюдение правил каждой платформы. Автоматические сообщения могут привести к ограничениям аккаунта; всегда ревьюь сгенерированные сообщения перед отправкой и уважай время рекрутёров. Рейт-лимиты существуют не просто так."
+      data-en="Disclaimer — JobHunter is an automation aid. You are responsible for complying with each platform's Terms of Service. Automated messaging can lead to account limits; always review generated messages before sending and respect recruiters' time. Rate limits exist for a reason.">—</div>
   </section>
 
   <footer>
-    <div>Built by <b style="color:var(--mut)">Egor Nikolaev</b> · MIT © 2026</div>
+    <div><span data-ru="Сделал" data-en="Built by">Сделал</span> <b style="color:var(--mut)">Егор Николаев</b> · MIT © 2026</div>
     <div style="display:flex;gap:18px">
       <a href="https://github.com/Egor-Nikolaev/JobHunter_by_Egor_Nikolaev" target="_blank">GitHub</a>
-      <a href="https://egor-nikolaev.base44.app" target="_blank">Portfolio</a>
+      <a href="https://egor-nikolaev.base44.app" target="_blank" data-ru="Портфолио" data-en="Portfolio">Портфолио</a>
       <a href="https://www.linkedin.com/in/george-nikolaev" target="_blank">LinkedIn</a>
     </div>
   </footer>
 </div>
+
+<script>
+const DATA={
+  term:{
+    ru:[['p','›','c','клонируй → открой в Claude Code'],['o','','o','✓ онбординг: кто ты, кого ищешь?'],
+        ['o','','o','✓ мастер-резюме собрано из твоих достижений'],['c','›','c','новая вакансия: «Senior PM · FinTech»'],
+        ['o','','o','✓ резюме под вакансию скомпилировано · ATS ','71%'],
+        ['o','','o','✓ персональная рассылка → Telegram · hh · Hirify ','отправлено'],
+        ['o','','o','✓ follow-up в очереди · форма заполнена'],['p','›','ok','4 живых диалога · 2 интервью_','']],
+    en:[['p','›','c','clone → open in Claude Code'],['o','','o','✓ onboarding: who are you, what are you hunting?'],
+        ['o','','o','✓ master résumé built from your wins'],['c','›','c','new vacancy: “Senior PM · FinTech”'],
+        ['o','','o','✓ tailored CV compiled · ATS match ','71%'],
+        ['o','','o','✓ personalized outreach → Telegram · hh · Hirify ','sent'],
+        ['o','','o','✓ follow-up queued · form auto-filled'],['p','›','ok','4 live conversations · 2 interviews_','']]
+  },
+  flow:{
+    ru:[['01','Онбординг','Расспрашивает тебя и собирает профиль.'],['02','Мастер-резюме','Карьера, структурированная один раз.'],
+        ['03','Тейлор','Свежее CV + сопровод под каждую вакансию.'],['04','Рассылка','Персональное сообщение каждому HR.'],
+        ['05','Follow-up','Догоняет молчунов, заполняет формы.'],['06','Трекинг','Все отклики на одном экране.']],
+    en:[['01','Onboard','It interviews you and builds your profile.'],['02','Master résumé','Your career, structured once.'],
+        ['03','Tailor','A fresh CV + cover per vacancy.'],['04','Reach out','Personalized message per recruiter.'],
+        ['05','Follow up','Chases silence, fills forms.'],['06','Track','Every application on one board.']]
+  },
+  grid:{
+    ru:[['🎯','Тейлор под вакансию','Матчит каждое описание с твоим банком навыков, переписывает заголовок и строку скиллов, компилирует чистый PDF. Имя файла = имя объявления, каждая цифра остаётся связанной.'],
+        ['📡','Рассылка по каналам','Telegram-каналы, hh.ru, Hirify — отдельное персональное сообщение каждому HR с приложенным резюме. Готово под LinkedIn.'],
+        ['↩️','Follow-up, который не забывает','Нет ответа N дней? Вежливое напоминание уходит само. В хвосте воронки большинство тихо теряет интервью.'],
+        ['📝','Авто-заполнение форм','Мешает форма отклика? Заполняет твои данные из профиля и — если разрешишь — отправляет.'],
+        ['📊','Командный пульт','Живой дашборд: отправлено, ответили, интервью, по источникам. Видно, что требует тебя.'],
+        ['🌍','Свой прокси','Регион заблокирован? Подставь свой ключ прокси для доступа. Ничего не зашито, ничего не расшарено.']],
+    en:[['🎯','Per-vacancy tailoring','Matches each job description against your skill bank, rewrites the headline and skills line, compiles a clean PDF. Filename equals ad name, so every stat stays traceable.'],
+        ['📡','Multi-channel outreach','Telegram job channels, hh.ru, Hirify — a distinct, personalized message per recruiter with your résumé attached. LinkedIn-ready.'],
+        ['↩️','Follow-ups that don\'t forget','No reply in N days? A polite nudge goes out automatically. The tail of a funnel is where most people quietly lose interviews.'],
+        ['📝','Form auto-fill','Application form in the way? It fills your details from your profile and — if you let it — submits.'],
+        ['📊','Command deck','A live dashboard: sent, replied, interviews, by source. See what needs you at a glance.'],
+        ['🌍','Bring your own proxy','Region-locked board? Plug in your own proxy key for access. Nothing hardcoded, nothing shared.']]
+  },
+  checks:{
+    ru:['Свои API- и прокси-ключи','По умолчанию с ревью: без тебя ничего не уходит','Встроенные рейт-лимиты','Конфиг и резюме в .gitignore','Лицензия MIT, полностью проверяемо'],
+    en:['Bring your own API & proxy keys','Review-first: nothing sends without you (by default)','Built-in rate limits','Config & résumé git-ignored','MIT licensed, fully auditable']
+  }
+};
+
+function renderDynamic(lang){
+  const term=document.getElementById('term');
+  term.innerHTML=DATA.term[lang].map(r=>{
+    const pre=r[1]?`<span class="${r[0]}">${r[1]}</span> `:'';
+    const tail=r[4]!==undefined?`<span class="ok">${r[4]}</span>`:'';
+    return `<div>${pre}<span class="${r[2]}">${r[3]}</span>${tail}</div>`;
+  }).join('');
+  document.getElementById('flow').innerHTML=DATA.flow[lang].map(s=>
+    `<div class="step"><div class="num">${s[0]}</div><h4>${s[1]}</h4><p>${s[2]}</p></div>`).join('');
+  document.getElementById('grid').innerHTML=DATA.grid[lang].map(f=>
+    `<div class="feat"><div class="ic">${f[0]}</div><h3>${f[1]}</h3><p>${f[2]}</p></div>`).join('');
+  document.getElementById('checks').innerHTML=DATA.checks[lang].map(c=>
+    `<li><span class="ck">✓</span> ${c}</li>`).join('');
+}
+
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-'+lang+']').forEach(el=>{ el.innerHTML=el.getAttribute('data-'+lang); });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+  renderDynamic(lang);
+  try{localStorage.setItem('jh_lang',lang)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+let saved=null; try{saved=localStorage.getItem('jh_lang')}catch(e){}
+const init = saved==='en'||saved==='ru' ? saved : ((navigator.language||'').toLowerCase().startsWith('en')?'en':'ru');
+setLang(init);
+</script>
